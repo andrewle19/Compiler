@@ -25,6 +25,14 @@ public:
         size = 0;
     }
     
+    // gets word at specific index
+    // INPUT: index of word
+    // OUTPUT: return word[i]
+    string getWord(int index)
+    {
+        return words[index];
+    }
+    
     
     // Checks if the string is a reserved word
     // INPUT: w- string we are checking
@@ -117,6 +125,62 @@ public:
         }
     }
     
+    
+    // check reserved checks all the words making sure none of the required reserved words are missing
+    // INPUT: None
+    // OUTPUT: msg on which are missing and bool true or false
+    
+    bool checkReserved()
+    {
+        
+        // stores result of test for BEGIN/INT/PROGRAM/END.
+        bool hasInt = false, hasBegin = false, hasProg = false, hasEnd = false;
+        for(int i = 0; i < 200; i++)
+        {
+            if(words[i] == "INTEGER")
+            {
+                hasInt = true;
+            }
+            if(words[i] == "BEGIN")
+            {
+                hasBegin = true;
+            }
+            if(words[i] == "PROGRAM")
+            {
+                hasProg = true;
+            }
+            if(words[i] == "END.")
+            {
+                hasEnd = true;
+            }
+        }
+        // if everything passes the test
+        if(hasInt == true && hasBegin == true && hasProg == true && hasEnd == true)
+        {
+            cout << "has everything" << endl;
+            return true;
+        }
+        
+        // error messeges for when each of the reserved words are missing
+        if(hasInt == false)
+        {
+            cout << "INTEGER is expected(integer missing or spelled wrong" << endl;
+        }
+        if(hasBegin == false)
+        {
+            cout << "BEGIN is expected(begin missing or spelled wrong" << endl;
+        }
+        if(hasProg == false)
+        {
+            cout << "PROGRAM is expected(program missing or spelled wrong" << endl;
+        }
+        if(hasEnd == false)
+        {
+            cout << "END. is expected(end. missing or spelled wrong" << endl;
+        }
+        return false;
+        
+    }
     
     // prints out all the data properly formated into file
     // Input: output ofstream to write to file

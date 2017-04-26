@@ -1,0 +1,32 @@
+A -> program B ; D t G w
+B -> R C
+C -> Q C
+C -> R C
+C -> LAMBDA
+D -> F : E ;
+E -> B S
+S -> , E | LAMBDA
+F -> u
+G -> H X
+X -> G | LAMBDA
+H -> I
+H -> J
+I -> v ( B ) ;
+J -> B = K ; 
+K -> L Y
+Y -> + L Y
+Y -> - L Y
+Y -> LAMBDA
+L -> M Z
+Z -> * M Z
+Z -> / M Z
+Z -> LAMBDA
+M -> B
+M -> N
+M -> ( K )
+N -> O Q P
+O -> + | - | LAMBDA
+P -> Q P
+P -> LAMBDA
+Q -> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+R -> p | q | r | s

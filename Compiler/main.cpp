@@ -5,9 +5,7 @@ Email: andrewle19@csu.fullerton.edu
 4/17/17
  
 Compiler that transforms a text file with code into a c++ executable code if it has no errors present
- 
- 
- 
+
 */
 
 #include <iostream>
@@ -23,8 +21,8 @@ int main()
     
     ifstream data; // handles opening and reading of the file data.txt
     ofstream output; // handles oppening and writing of the file newdata.txt
-    string statement; // takes in lines from the data.txt
-    identify compiler; // intialize compiler
+    string statement; // takes in lines from the txt file
+    identify parser; // parses through txt file to take out undesirables
     data.open("finalv1.txt"); // opens the code file
     
     
@@ -36,16 +34,23 @@ int main()
         {
             getline(data, statement); // gets the line
             // checks for comment lines/extra white space removes all of them saves data to array in class
-            compiler.check(statement);
+            parser.check(statement);
         }
-      
         // opens the finalv2.txt file or writes to it depending on if it exists
         output.open("finalv2.txt");
-       
-        compiler.printfile(output); // prints all the new data to file
+        parser.printfile(output); // prints all the new data to file
         
         cout << "Outputing to file" << endl;
-        output.close(); // close file
+        output.close(); // close filex
+        if(parser.checkReserved())
+        {
+            cout << "cool" << endl;
+        }
+        else
+        
+        {
+            cout << "not cool" << endl;
+        }
     }
     else
     {

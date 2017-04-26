@@ -7,4 +7,3 @@ R = 5 ;
 PRINT ( R ) ;
 S12 = P1 * ( Q2S + 2 * R ) ;
 PRINT ( S12 ) ;
-END. 
