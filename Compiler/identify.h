@@ -212,6 +212,84 @@ public:
         
     }
     
+    // Writes to parsed text to executable c++ file
+    // INPUT: output stream
+    // OUTPUT: return executable c++ file
+    void writeCplus(ofstream &out)
+    {
+        
+        int i = 0; //iterator
+        bool end = false; // bool for when END. is found
+        // loop ends once END. is found
+        
+        while (end != true)
+        {
+            // if the word is Program conver to c++ headers
+            if (words[i] == "PROGRAM")
+            {
+                out << "#include <iostream>" << endl;
+                out << "using namespace std;" << endl;
+                out << "int main()" << endl;
+                out << "{" << endl;
+                i += 2;
+            }
+            // if word is integer conver to c++ style
+            else if(words[i] == "INTEGER")
+            {
+                out << "int ";
+                i++; // skip the colon
+            }
+            
+            // if the word is begin skip to next index
+            else if(words[i] == "BEGIN")
+            {
+            }
+            
+            // if semi colon end line
+            else if(words[i] == ";")
+            {
+                out << ";" << endl;
+            }
+            
+            // convert print to c++ then place word that is 2 indexs away in middle
+            else if(words[i] == "PRINT")
+            {
+                out << "cout << " << words[i+2] << " << endl;";
+                i+=3;//increment by 3
+            }
+            
+            // end the loop if END. is signaled
+            else if(words[i] == "END.")
+            {
+                out << "return 0;" << endl;
+                out << "}";
+                end = true;
+            }
+            
+            // if it is a special char then add spaces in between
+            else if(isSpecial(words[i][0]))
+            {
+                // if previous word was special character dont add space before
+                if(isSpecial(words[i-1][0]))
+                {
+                    out << words[i] << " ";
+                }
+                // add space before since it was a regular expression
+                else
+                {
+                    out << " " << words[i] << " ";
+                }
+            }
+            // regular expression
+            else
+            {
+                out << words[i];
+            }
+            i++; // increment
+        }
+    }
+    
+    
     // Writes the parsed txt into an executable python file
     // INPUT: output stream to a python file
     // OUTPUT: a executable python file

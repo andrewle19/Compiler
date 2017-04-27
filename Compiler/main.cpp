@@ -81,15 +81,46 @@ int main()
                
             }
             
-            // checks if code is accepted then proceeds to write it to a cpp file
+            // checks if code is accepted then proceeds ask user which language user wants to compile code in
             if(compiler.check(statement))
             {
-                
+                int choice; // user choice one what to comple
+                bool quit = false; // quits when user picks choice
+               
                 cout << "Accepted Code" << endl;
-                cout << "Compiling to Python file..." << endl;
-                output.open("Final.py");
-                parser.writePython(output);
-                output.close();
+                
+                while(quit != true)
+                {
+                    // menu of langagues
+                    cout << "1. Compile to C++" << endl;
+                    cout << "2. Compile to Python" << endl;
+                    cout << "Enter choice(1-2):";
+                    cin >> choice;
+                    
+                    if(choice == 1) // if user wants c++
+                    {
+                        cout << "Compiling to C++ file..." << endl;
+                        output.open("Final.cpp");
+                        parser.writeCplus(output);
+                        quit = true; // quits the loop
+                        output.close();
+                    }
+                    
+                    else if(choice == 2) // if user wants python
+                    {
+                        cout << "Compiling to Python file..." << endl;
+                        output.open("Final.py");
+                        parser.writePython(output);
+                        quit = true; // quits out of loop
+                        output.close();
+                    }
+                    
+                    else // handles invalid input
+                    {
+                        cout << "Invalid Input " << endl;
+                    }
+                }
+               
             }
            
             // does not write to cpp if rejected
