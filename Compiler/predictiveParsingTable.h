@@ -78,7 +78,7 @@ public:
         for(int i = (int)table[stateindex][keyindex].length()-1; i >= 0 ;i--)
         {
             s.push(table[stateindex][keyindex][i]); // push the table index to stack
-            cout << "push: " << s.top() << endl;
+            // cout << "push: " << s.top() << endl;
         }
         
     }
@@ -96,19 +96,21 @@ public:
         // until the stack is empty
         while(s.empty() == false)
         {
+            // change any alphabetical character to a lower to match the parsing table
             if(isalpha(word[i]))
             {
                 word[i] = tolower(word[i]);
             }
             
+            
             if(checkspecial(word[i])) // check if search key is valid
             {
-                cout << "read: " << word[i] << endl;
-                cout << "pop: " << s.top() << endl;
-                if(checkspecial(s.top())) // check if top of stack is special character
+                //cout << "read: " << word[i] << endl;
+                //cout << "pop: " << s.top() << endl;
+                if(checkspecial(s.top()) && s.top() == word[i]) // check if top of stack is special character and is equal to word
                 {
                     match += s.top(); // append top to match
-                    cout << "match: " << s.top() << endl;
+                    //cout << "match: " << s.top() << endl;
                     s.pop(); // pop the stack
                     i++;
                 }
@@ -120,6 +122,11 @@ public:
                 {
                     s.pop();
                 }
+                else if(s.top() == 'e')
+                {
+                    cout << "Illegal Expression" << endl;
+                    return false;
+                }
                 else // if none of above is true reject the input
                 {
                     return false;
@@ -127,6 +134,7 @@ public:
             }
             else // if the search key is not valid
             {
+                cout << "Illegal Expression" << endl;
                 return false;
             }
         }
@@ -180,6 +188,7 @@ public:
     // OUPUT: the index of the key
     int keyindex(char key)
     {
+        // if the key is an aphabetical char then change it to lower case to match the table
         if(isalpha(key))
         {
             key = tolower(key);

@@ -33,19 +33,24 @@ int main()
         while (data.eof() != true)
         {
             getline(data, statement); // gets the line
+           
             // checks for comment lines/extra white space removes all of them saves data to array in class
             parser.check(statement);
         }
+        
         // opens the finalv2.txt file or writes to it depending on if it exists
         output.open("finalv2.txt");
         parser.printfile(output); // prints all the new data to file
         
-        cout << "Outputing to file" << endl;
+        cout << "Removing Comment Lines and Unessecary Whitespace" << endl;
         output.close(); // close file
         
         if(parser.checkReserved())
         {
-            string statement;
+            string statement; // combine all the parsed words in one statement
+            
+            // inserts parsed words into one statement
+            // if any of the words are the reserved words replace them with special placeholder
             for (int i = 0; i < parser.getSize(); i++)
             {
                 if(parser.getWord(i) == "PROGRAM")
@@ -68,33 +73,37 @@ int main()
                 {
                     statement += 't';
                 }
+                // not a reserved word so we just add
                 else
                 {
                     statement += parser.getWord(i);
                 }
                
             }
-            cout << statement << endl;
             
+            // checks if code is accepted then proceeds to write it to a cpp file
             if(compiler.check(statement))
             {
-                cout << "Accepted you did it " << endl;
+                
+                cout << "Accepted Code" << endl;
+                cout << "Compiling to Python file..." << endl;
+                output.open("Final.py");
+                parser.writePython(output);
+                output.close();
             }
+           
+            // does not write to cpp if rejected
             else
             {
-                cout << " you tried" << endl;
+                cout << "Rejected Code" << endl;
             }
             
         }
-        else
-        
-        {
-            cout << "not cool" << endl;
-        }
+       
     }
     else
     {
-        cout << "Could not open data.txt" << endl;
+        cout << "Could not open finalv1.txt" << endl;
     }
     
    

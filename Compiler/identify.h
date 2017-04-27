@@ -165,7 +165,6 @@ public:
         // if everything passes the test
         if(hasInt == true && hasBegin == true && hasProg == true && hasEnd == true)
         {
-            cout << "has everything" << endl;
             return true;
         }
         
@@ -208,6 +207,76 @@ public:
             {
                 out << words[i] << " ";
             }
+            i++; // increment
+        }
+        
+    }
+    
+    // Writes the parsed txt into an executable python file
+    // INPUT: output stream to a python file
+    // OUTPUT: a executable python file
+    void writePython(ofstream &out)
+    {
+        
+        int i = 0; //iterator
+        bool end = false; // bool for when END. is found
+        bool begin = false; // bool to signal the begining
+        
+        // loop ends once END. is found
+        while (end != true)
+        {
+           
+            // if the word index BEGIN then we start to write the code
+            if (words[i] == "BEGIN")
+            {
+                begin = true;
+                i++;
+            }
+            
+            // write everything after begin in python
+            if(begin)
+            {
+            
+                if(words[i] == ";")
+                {
+                    out << '\n';
+                }
+                
+                // convert print to python
+                else if(words[i] == "PRINT")
+                {
+                    out << "print";
+                }
+                
+                // end the loop if END. is signaled
+                else if(words[i] == "END.")
+                {
+                    end = true;
+                }
+                
+                // if it is a special char then add spaces in between
+                else if(isSpecial(words[i][0]))
+                {
+                    // if previous word was special character dont add space before
+                    if(isSpecial(words[i-1][0]))
+                    {
+                        out << words[i] << " ";
+                    }
+                    // add space before since it was a regular expression
+                    else
+                    {
+                        out << " " << words[i] << " ";
+                    }
+                }
+                
+                // regular expression
+                else
+                {
+                    out << words[i];
+                }
+            }
+           
+    
             i++; // increment
         }
         
