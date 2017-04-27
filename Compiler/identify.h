@@ -25,6 +25,13 @@ public:
         size = 0;
     }
     
+    // get the size of the array
+    // INPUT: NONE
+    // OUTPUT: size of the words array
+    int getSize()
+    {
+        return size;
+    }
     // gets word at specific index
     // INPUT: index of word
     // OUTPUT: return word[i]
@@ -32,6 +39,7 @@ public:
     {
         return words[index];
     }
+    
     
     
     // Checks if the string is a reserved word

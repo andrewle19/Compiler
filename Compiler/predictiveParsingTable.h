@@ -15,23 +15,46 @@
 #include <stack>
 using namespace std;
 
+
 class predictiontable
 {
 private:
-    const charSize = 29;
-    const stateSize = 22;
+    
+    const int charSize = 30;
+    const int stateSize = 22;
     stack<char> s; // char stack
     
     // array of language
-    char specialcharacters[charSize] = {'z','T','U','V','W','p','q','r','s','+','-','*','/','=','/','='
+    char specialcharacters[30] = {'z','t','u','v','w','p','q','r','s','+','-','*','/','=',
         '(',')',',',';',':','0','1','2','3','4','5','6','7','8','9','$'};
     
     // array of states
-    char states[stateSize] = {'A','B','C','D','E','S','F','G','X','H','I','J','K','Y','L','Z','M',
-    'N','O','P','Q','R'};
+    char states[22] = {'A','B','C','D','E','S','F','G','X','H','I','J','K','Y','L','Z','M',
+        'N','O','P','Q','R'};
     
     // 2d array of the predictive table
-    string table[22][29];
+    string table[22][30] = {"zB;DtGw","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e",
+        "e","e","e","e","e","RC","RC","RC","RC","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e",
+        "e","e","e","e","e","RC","RC","RC","RC","l","l","l","l","l","e","l","l","l","e","QC","QC","QC","QC","QC","QC","QC","QC","QC","QC","e",
+        "e","e","F:E;","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e",
+        "e","e","e","e","e","BS","BS","BS","BS","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e",
+        "e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e",",E","l","e","e","e","e","e","e","e","e","e","e","e","e",
+        "e","e","u","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e",
+        "e","e","e","HX","e","HX","HX","HX","HX","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e",
+        "e","e","e","G","l","G","G","G","G","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e",
+        "e","e","e","I","e","J","J","J","J","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e",
+        "e","e","e","v(B);","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e",
+        "e","e","e","e","e","B=K;","B=K;","B=K;","B=K;","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e",
+        "e","e","e","e","e","LY","LY","LY","LY","LY","LY","e","e","e","LY","e","e","e","e","LY","LY","LY","LY","LY","LY","LY","LY","LY","LY","e",
+        "e","e","e","e","e","e","e","e","e","+LY","-LY","e","e","e","e","l","e","l","e","e","e","e","e","e","e","e","e","e","e","e",
+        "e","e","e","e","e","MZ","MZ","MZ","MZ","MZ","MZ","e","e","e","MZ","e","e","e","e","MZ","MZ","MZ","MZ","MZ","MZ","MZ","MZ","MZ","MZ","e",
+        "e","e","e","e","e","e","e","e","e","l","l","*MZ","/MZ","e","e","l","e","l","e","e","e","e","e","e","e","e","e","e","e","e",
+        "e","e","e","e","e","B","B","B","B","N","N","e","e","e","(K)","e","e","e","e","N","N","N","N","N","N","N","N","N","N","e",
+        "e","e","e","e","e","e","e","e","e","OQP","OQP","e","e","e","e","e","e","e","e","OQP","OQP","OQP","OQP","OQP","OQP","OQP","OQP","OQP","OQP","e",
+        "e","e","e","e","e","e","e","e","e","+","-","e","e","e","e","e","e","e","e","l","l","l","l","l","l","l","l","l","l","e",
+        "e","e","e","e","e","e","e","e","e","l","l","l","l","e","e","l","e","l","e","QP","QP","QP","QP","QP","QP","QP","QP","QP","QP","e",
+        "e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","0","1","2","3","4","5","6","7","8","9","e",
+        "e","e","e","e","e","p","q","r","s","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e"};
     
     
 public:
@@ -39,8 +62,7 @@ public:
     // default constructor
     predictiontable()
     {
-        s.push('$');
-        s.push('E');
+        s.push('A');
         
     }
     
@@ -67,20 +89,25 @@ public:
     // OUTPUT: Returns True or False depending on accepted or rejected
     bool check(string word)
     {
+        
         bool accepted = false; // if the word is accepted or rejected
         string match; // string match to check if the input string matches
         int i = 0; // the index of the key we want to search
-        
         // until the stack is empty
         while(s.empty() == false)
         {
+            if(isalpha(word[i]))
+            {
+                word[i] = tolower(word[i]);
+            }
+            
             if(checkspecial(word[i])) // check if search key is valid
             {
                 cout << "read: " << word[i] << endl;
+                cout << "pop: " << s.top() << endl;
                 if(checkspecial(s.top())) // check if top of stack is special character
                 {
                     match += s.top(); // append top to match
-                    cout << "pop: " << s.top() << endl;
                     cout << "match: " << s.top() << endl;
                     s.pop(); // pop the stack
                     i++;
@@ -89,7 +116,7 @@ public:
                 {
                     advanceState(stateindex(s.top()),keyindex(word[i])); // advances the state
                 }
-                else if(s.top() == 'L') // if the state is lamda then pop the stack
+                else if(s.top() == 'l') // if the state is lamda then pop the stack
                 {
                     s.pop();
                 }
@@ -98,13 +125,11 @@ public:
                     return false;
                 }
             }
-            
             else // if the search key is not valid
             {
                 return false;
             }
         }
-        
         // final check if the word is in the language
         if(match == word)
         {
@@ -121,7 +146,8 @@ public:
     bool checkspecial(char key)
     {
         bool special = false;
-        for(int i = 0; i < stateSize; i++)
+        
+        for(int i = 0; i < charSize; i++)
         {
             // checks if key is a special char
             if(specialcharacters[i] == key)
@@ -138,7 +164,7 @@ public:
     // OUTPUT: returns index of the state
     bool checkState(char state)
     {
-        for(int i = 0;i < charSize;i++)
+        for(int i = 0;i < stateSize;i++)
         {
             if(states[i] == state) // checks if state is actually a state
             {
@@ -154,7 +180,12 @@ public:
     // OUPUT: the index of the key
     int keyindex(char key)
     {
-        for(int i = 0;i < 8;i++)
+        if(isalpha(key))
+        {
+            key = tolower(key);
+        }
+        
+        for(int i = 0;i < charSize;i++)
         {
             if(specialcharacters[i] == key) // searchs for location of key in list
             {
@@ -170,7 +201,7 @@ public:
     // OUTPUT: returns index of the state
     int stateindex(char state)
     {
-        for(int i = 0;i < 5;i++)
+        for(int i = 0;i < stateSize;i++)
         {
             if(states[i] == state) // searches for location of key in list
             {
