@@ -134,10 +134,75 @@ public:
     }
     
     
+    // checks if a colon is missing after the word INTEGER
+    // INPUT: NONE
+    // OUTPUT: msg on if it is missing and bool true or false
+    bool checkColon()
+    {
+        bool hasColon = true;
+        
+        // loops through all words
+        for(int i = 0; i < 200; i ++)
+        {
+            // searchs for the INTEGER KEY Word
+            if(words[i] == "INTEGER")
+            {
+                // check if next word is : if not then return false
+                if (words[i+1] != ":")
+                {
+                    hasColon = false;
+                }
+            }
+        }
+        
+        // error message
+        if(hasColon != true)
+        {
+            cout << ": is missing" << endl;
+        }
+        return hasColon;
+    }
+    
+    // check if either the left parentheses or right parentheses is missing
+    // INPUT: NONE:
+    // OUTPUT: error msg if one/both parentheses are missing
+    bool checkParentheses()
+    {
+        // variables for both parentheses
+        bool left = true;
+        bool right = true;
+        bool both = true;
+        // loops through all words
+        for(int i = 0; i < 200; i++)
+        {
+            // searchs for the PRINT KEY Word
+            if(words[i] == "PRINT")
+            {
+                // check if next word is ( if not then return false
+                if (words[i+1] != "(")
+                {
+                    left = false;
+                    both = false;
+                }
+                
+            }
+        }
+        // output error message
+        if(left != true)
+        {
+            cout << "Left parentheses is missing" << endl;
+        }
+        if(right != true )
+        {
+            cout << "Right parentheses is missing" << endl;
+        }
+
+        return both;
+    }
+    
     // check reserved checks all the words making sure none of the required reserved words are missing
     // INPUT: None
     // OUTPUT: msg on which are missing and bool true or false
-    
     bool checkReserved()
     {
         
@@ -171,23 +236,24 @@ public:
         // error messeges for when each of the reserved words are missing
         if(hasInt == false)
         {
-            cout << "INTEGER is expected(integer missing or spelled wrong" << endl;
+            cout << "INTEGER is expected(integer missing or spelled wrong)" << endl;
         }
         if(hasBegin == false)
         {
-            cout << "BEGIN is expected(begin missing or spelled wrong" << endl;
+            cout << "BEGIN is expected(begin missing or spelled wrong)" << endl;
         }
         if(hasProg == false)
         {
-            cout << "PROGRAM is expected(program missing or spelled wrong" << endl;
+            cout << "PROGRAM is expected(program missing or spelled wrong)" << endl;
         }
         if(hasEnd == false)
         {
-            cout << "END. is expected(end. missing or spelled wrong" << endl;
+            cout << "END. is expected(end. missing or spelled wrong)" << endl;
         }
         return false;
         
     }
+    
     
     // prints out all the data properly formated into file
     // Input: output ofstream to write to file

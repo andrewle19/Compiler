@@ -45,7 +45,7 @@ int main()
         cout << "Removing Comment Lines and Unessecary Whitespace" << endl;
         output.close(); // close file
         
-        if(parser.checkReserved())
+        if(parser.checkReserved() && parser.checkColon())
         {
             string statement; // combine all the parsed words in one statement
             

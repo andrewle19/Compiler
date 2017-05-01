@@ -8,9 +8,9 @@ BEGIN
 	P1      = -3 ;
 	Q2S=     4 ;
 	R      = 5  ;
-PRINT( R ); // display R // 
+PRINT ( R ); // display R //
 
 	//compute the value of the expression
 	S12 = P1 * ( Q2S + 2 * R)   ;
-	PRINT(S12 ); // print the value of S12//
+	PRINT ( S12 ); // print the value of S12//
 END.

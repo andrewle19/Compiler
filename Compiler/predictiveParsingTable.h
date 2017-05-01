@@ -78,7 +78,7 @@ public:
         for(int i = (int)table[stateindex][keyindex].length()-1; i >= 0 ;i--)
         {
             s.push(table[stateindex][keyindex][i]); // push the table index to stack
-            // cout << "push: " << s.top() << endl;
+            //cout << "push: " << s.top() << endl;
         }
         
     }
@@ -110,7 +110,7 @@ public:
                 if(checkspecial(s.top()) && s.top() == word[i]) // check if top of stack is special character and is equal to word
                 {
                     match += s.top(); // append top to match
-                    //cout << "match: " << s.top() << endl;
+                  //  cout << "match: " << s.top() << endl;
                     s.pop(); // pop the stack
                     i++;
                 }
