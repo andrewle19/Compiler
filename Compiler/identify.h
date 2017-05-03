@@ -51,6 +51,7 @@ public:
         for (int i = 0; i < w.length(); i++)
         {
             word += w[i];
+            
             for(int j = 0; j < 5; j++)
             {
                 if(word == reservedwords[j])
@@ -163,43 +164,7 @@ public:
         return hasColon;
     }
     
-    // check if either the left parentheses or right parentheses is missing
-    // INPUT: NONE:
-    // OUTPUT: error msg if one/both parentheses are missing
-    bool checkParentheses()
-    {
-        // variables for both parentheses
-        bool left = true;
-        bool right = true;
-        bool both = true;
-        // loops through all words
-        for(int i = 0; i < 200; i++)
-        {
-            // searchs for the PRINT KEY Word
-            if(words[i] == "PRINT")
-            {
-                // check if next word is ( if not then return false
-                if (words[i+1] != "(")
-                {
-                    left = false;
-                    both = false;
-                }
-                
-            }
-        }
-        // output error message
-        if(left != true)
-        {
-            cout << "Left parentheses is missing" << endl;
-        }
-        if(right != true )
-        {
-            cout << "Right parentheses is missing" << endl;
-        }
-
-        return both;
-    }
-    
+        
     // check reserved checks all the words making sure none of the required reserved words are missing
     // INPUT: None
     // OUTPUT: msg on which are missing and bool true or false

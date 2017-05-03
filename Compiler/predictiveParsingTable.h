@@ -34,10 +34,10 @@ private:
     
     // 2d array of the predictive table
     string table[22][30] = {"zB;DtGw","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e",
-        "e","e","e","e","e","RC","RC","RC","RC","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e",
+        "e","e","m","e","e","RC","RC","RC","RC","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e",
         "e","e","e","e","e","RC","RC","RC","RC","l","l","l","l","l","e","l","l","l","e","QC","QC","QC","QC","QC","QC","QC","QC","QC","QC","e",
         "e","e","F:E;","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e",
-        "e","e","e","e","e","BS","BS","BS","BS","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e",
+        "e","m","e","e","e","BS","BS","BS","BS","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e",
         "e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e",",E","l","e","e","e","e","e","e","e","e","e","e","e","e",
         "e","e","u","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e",
         "e","e","e","HX","e","HX","HX","HX","HX","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e",
@@ -45,14 +45,14 @@ private:
         "e","e","e","I","e","J","J","J","J","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e",
         "e","e","e","v(B);","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e",
         "e","e","e","e","e","B=K;","B=K;","B=K;","B=K;","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e",
-        "e","e","e","e","e","LY","LY","LY","LY","LY","LY","e","e","e","LY","e","e","e","e","LY","LY","LY","LY","LY","LY","LY","LY","LY","LY","e",
+        "e","e","e","m","e","LY","LY","LY","LY","LY","LY","e","e","e","LY","e","e","e","e","LY","LY","LY","LY","LY","LY","LY","LY","LY","LY","e",
         "e","e","e","e","e","e","e","e","e","+LY","-LY","e","e","e","e","l","e","l","e","e","e","e","e","e","e","e","e","e","e","e",
         "e","e","e","e","e","MZ","MZ","MZ","MZ","MZ","MZ","e","e","e","MZ","e","e","e","e","MZ","MZ","MZ","MZ","MZ","MZ","MZ","MZ","MZ","MZ","e",
-        "e","e","e","e","e","e","e","e","e","l","l","*MZ","/MZ","e","e","l","e","l","e","e","e","e","e","e","e","e","e","e","e","e",
+        "e","e","e","m","e","e","e","e","e","l","l","*MZ","/MZ","e","e","l","e","l","e","e","e","e","e","e","e","e","e","e","e","e",
         "e","e","e","e","e","B","B","B","B","N","N","e","e","e","(K)","e","e","e","e","N","N","N","N","N","N","N","N","N","N","e",
         "e","e","e","e","e","e","e","e","e","OQP","OQP","e","e","e","e","e","e","e","e","OQP","OQP","OQP","OQP","OQP","OQP","OQP","OQP","OQP","OQP","e",
         "e","e","e","e","e","e","e","e","e","+","-","e","e","e","e","e","e","e","e","l","l","l","l","l","l","l","l","l","l","e",
-        "e","e","e","e","e","e","e","e","e","l","l","l","l","e","e","l","e","l","e","QP","QP","QP","QP","QP","QP","QP","QP","QP","QP","e",
+        "e","e","e","e","e","e","m","m","e","l","l","l","l","e","e","l","e","l","e","QP","QP","QP","QP","QP","QP","QP","QP","QP","QP","e",
         "e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","0","1","2","3","4","5","6","7","8","9","e",
         "e","e","e","e","e","p","q","r","s","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e"};
     
@@ -75,10 +75,16 @@ public:
         
         // loop to push states into the stack starts at end of string state because we want to
         // push from then end first
+        if (table[stateindex][keyindex] == "e")
+        {
+            
+            cout << "error" << endl;
+            cout << stateindex << " " << keyindex << endl;
+        }
         for(int i = (int)table[stateindex][keyindex].length()-1; i >= 0 ;i--)
         {
             s.push(table[stateindex][keyindex][i]); // push the table index to stack
-            //cout << "push: " << s.top() << endl;
+            cout << "push: " << s.top() << endl;
         }
         
     }
@@ -105,13 +111,13 @@ public:
             
             if(checkspecial(word[i])) // check if search key is valid
             {
-                //cout << "read: " << word[i] << endl;
-                //cout << "pop: " << s.top() << endl;
+                cout << "read: " << word[i] << endl;
+                cout << "pop: " << s.top() << endl;
                 if(checkspecial(s.top()) && s.top() == word[i]) // check if top of stack is special character and is equal to word
                 {
                     match += s.top(); // append top to match
-                  //  cout << "match: " << s.top() << endl;
-                    s.pop(); // pop the stack
+                  // cout << "match: " << s.top() << endl;
+                    s.pop(); // pop the stack3
                     i++;
                 }
                 else if(checkState(s.top())) // checks if top of stack is a state
@@ -125,6 +131,11 @@ public:
                 else if(s.top() == 'e')
                 {
                     cout << "Illegal Expression" << endl;
+                    return false;
+                }
+                else if(s.top() == 'm')
+                {
+                    cout << "Missing ;" << endl;
                     return false;
                 }
                 else // if none of above is true reject the input
