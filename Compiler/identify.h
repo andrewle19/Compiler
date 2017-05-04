@@ -17,6 +17,7 @@ private:
     string special[9] = {"=","*","-",";","(",")","+",",",":"}; // list of special characters
     int size; // stores the size of the array
     string reservedwords[5] = {"PROGRAM","BEGIN","END.","INTEGER","PRINT"}; // reserved words
+  
 public:
     
     // default constructor
@@ -159,7 +160,7 @@ public:
         // error message
         if(hasColon != true)
         {
-            cout << ": is missing" << endl;
+            cout << ": is Missing" << endl;
         }
         return hasColon;
     }
@@ -218,6 +219,7 @@ public:
         return false;
         
     }
+    
     
     
     // prints out all the data properly formated into file

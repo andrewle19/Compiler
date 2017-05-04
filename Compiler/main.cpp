@@ -84,6 +84,8 @@ int main()
             // checks if code is accepted then proceeds ask user which language user wants to compile code in
             if(compiler.check(statement))
             {
+                parser.declaredVariabes();
+                parser.printV();
                 int choice; // user choice one what to comple
                 bool quit = false; // quits when user picks choice
                

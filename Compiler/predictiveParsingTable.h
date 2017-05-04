@@ -84,7 +84,7 @@ public:
         for(int i = (int)table[stateindex][keyindex].length()-1; i >= 0 ;i--)
         {
             s.push(table[stateindex][keyindex][i]); // push the table index to stack
-            cout << "push: " << s.top() << endl;
+            // cout << "push: " << s.top() << endl;
         }
         
     }
@@ -111,14 +111,19 @@ public:
             
             if(checkspecial(word[i])) // check if search key is valid
             {
-                cout << "read: " << word[i] << endl;
-                cout << "pop: " << s.top() << endl;
+               // cout << "read: " << word[i] << endl;
+                // cout << "pop: " << s.top() << endl;
                 if(checkspecial(s.top()) && s.top() == word[i]) // check if top of stack is special character and is equal to word
                 {
                     match += s.top(); // append top to match
                   // cout << "match: " << s.top() << endl;
                     s.pop(); // pop the stack3
                     i++;
+                }
+                else if(checkspecial(s.top())) // checks if the top of the stack is a special char if so then it is missing because no match
+                {
+                    cout << s.top() << " is Missing" << endl;
+                    return false;
                 }
                 else if(checkState(s.top())) // checks if top of stack is a state
                 {
@@ -128,14 +133,14 @@ public:
                 {
                     s.pop();
                 }
-                else if(s.top() == 'e')
+                else if(s.top() == 'e') // if illegal expression error code is at the top of stack
                 {
                     cout << "Illegal Expression" << endl;
                     return false;
                 }
-                else if(s.top() == 'm')
+                else if(s.top() == 'm') // if missing semicolon is at the top of the stack
                 {
-                    cout << "Missing ;" << endl;
+                    cout << "; is Missing" << endl;
                     return false;
                 }
                 else // if none of above is true reject the input
