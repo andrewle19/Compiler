@@ -2,12 +2,12 @@
 using namespace std;
 int main()
 {
-int P1 , Q2S , R , S12;
-P1 = - 3;
-Q2S = 4;
-R = 5;
-cout << R << endl;;
-S12 = P1 * ( Q2S + 2 * R ) ;
-cout << S12 << endl;;
+int P12 , PRS , Q3;
+PRS = 121;
+cout << PRS << endl;;
+Q3 = 10;
+P12 = PRS - Q3 * ( 3 + PRS * Q3 ) ;
+cout << P12 << endl;;
+cout << Q3 << endl;;
 return 0;
 }

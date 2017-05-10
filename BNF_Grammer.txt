@@ -1,0 +1,70 @@
+<prog> = A
+<identifier> = B
+<more-id-digit> = C
+<dec-list> = D
+<dec> = E
+<type> = F
+<stat-list> = G
+<stat> = H
+<print> = I
+<assign> = J
+<expr> = K
+<term> = L
+<factor> = M
+<number> = N
+<sign> = O
+<more-digit> = P
+<digit> = Q
+<id> = R
+
+BEGIN = t
+INTEGER = u
+PRINT = v
+END. = w
+
+A-> PROGRAM B ; D t G w
+B-> R C
+C-> Q C 
+C-> R C 
+C-> LAMBDA
+D-> F : E ;
+E-> B , E
+E-> B
+F-> u
+G-> H 
+G-> H G
+H-> I 
+H-> J
+I-> v ( B ) ;
+J-> B = K ;
+K-> K + L 
+K-> K - L 
+K-> L
+L-> L * M 
+L-> L / M 
+L-> M
+M-> B 
+M-> N 
+M-> ( K )
+N-> O Q P
+O-> + 
+O-> - 
+O-> LAMBDA
+P-> Q P 
+P-> LAMBDA
+Q-> 0 
+Q-> 1 
+Q-> 2 
+Q-> 3 
+Q-> 4 
+Q-> 5 
+Q-> 6 
+Q-> 7 
+Q-> 8 
+Q-> 9
+R-> p 
+R-> q 
+R-> r 
+R-> s 
+
+

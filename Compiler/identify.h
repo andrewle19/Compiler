@@ -17,7 +17,7 @@ private:
     string special[9] = {"=","*","-",";","(",")","+",",",":"}; // list of special characters
     int size; // stores the size of the array
     string reservedwords[5] = {"PROGRAM","BEGIN","END.","INTEGER","PRINT"}; // reserved words
-  
+    string declaredvariables[10];
 public:
     
     // default constructor
@@ -220,7 +220,78 @@ public:
         
     }
     
+    // stores declared variables in declared variables
+    // INPUT: NONE
+    // OUTPUT: NONE
+    void declaredVariables()
+    {
+        for (int i = 0; i < 200; i++)
+        {
+            if(words[i] == "INTEGER")
+            {
+                int j = i;
+                int k = 0;
+                while (words[j] != ";")
+                {
+                    if(words[j] != "," && words[j] != "INTEGER" && words[j] != ":")
+                    {
+                        declaredvariables[k] = words[j];
+                        k++;
+                    }
+                    j++;
+                }
+            }
+        }
+    }
     
+    // Checks if word is in declared VARIABLES
+    // INPUT: string word- word to check
+    // OUTPUT: true / false depending on if the word is in declared
+    bool isDeclaredV(string word)
+    {
+        bool x = false;
+        for(int i = 0; i < 10; i++)
+        {
+            if(word == declaredvariables[i])
+            {
+                x = true;
+            }
+        }
+        return x;
+    }
+    
+    // check declared
+    // checks whether variables are declared or not
+    // INPUT: NONE;
+    // OUTPUT: True / False depending on whether variables were declared or not
+    bool isDeclared()
+    {
+        bool isVariable = true;
+        
+        for(int i = 0; i < 200; i++)
+        {
+            if(words[i] == "=")
+            {
+                if(isDeclaredV(words[i-1]) != true)
+                {
+                    isVariable = false;
+                    cout << words[i-1] << " is not declared variable" << endl;
+                }
+            }
+        }
+        for(int i = 0; i < 200; i++)
+        {
+            if(words[i] == "PRINT")
+            {
+                if(isDeclaredV(words[i+2]) != true)
+                {
+                    isVariable = false;
+                    cout << words[i+2] << " is not declared variable" << endl;
+                }
+            }
+        }
+        return isVariable;
+    }
     
     // prints out all the data properly formated into file
     // Input: output ofstream to write to file
