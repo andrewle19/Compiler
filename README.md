@@ -7,4 +7,5 @@ Converts the grammar into valid python/c++ code.
 <b>NOTE: </b>A real compiler will convert to machine code instead we simulate the process with high level code)</p>
 
 <h3> Original Grammar RailRoad</h3>
-![grammar](https://github.com/andrewle19/Compiler/blob/master/OrignialGrammar.png)
+
+![alt text](https://github.com/andrewle19/Compiler/blob/master/OrignialGrammar.png)
