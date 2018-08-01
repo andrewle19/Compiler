@@ -17,23 +17,25 @@ using namespace std;
 
 
 
-int main()
+int main(int argc, char* argv[])
 {
     predictiontable compiler; // intialize the predictive parsing table
     ifstream data; // handles opening and reading of the file data.txt
     ofstream output; // handles oppening and writing of the file newdata.txt
     string statement; // takes in lines from the txt file
     identify parser; // parses through txt file to take out undesirables
-    data.open("finalv1.txt"); // opens the code file
+
+    if (argc != 2){
+      cout << "Invalid Number of Arguments" << endl;
+        return 1;
+    }
+    data.open(string(argv[1])); // opens the code file
 
     // checks if file successfully opened
-    if (data.is_open())
-    {
+    if (data.is_open()){
         // takes in lines as long as the file is not at eof
-        while (data.eof() != true)
-        {
+        while (data.eof() != true){
             getline(data, statement); // gets the line
-
             // checks for comment lines/extra white space removes all of them saves data to array in class
             parser.check(statement);
         }
@@ -45,8 +47,7 @@ int main()
         cout << "Removing Comment Lines and Unessecary Whitespace" << endl;
         output.close(); // close file
 
-        if(parser.checkReserved() && parser.checkColon())
-        {
+        if(parser.checkReserved() && parser.checkColon()){
             string statement; // combine all the parsed words in one statement
 
             // inserts parsed words into one statement
@@ -72,8 +73,7 @@ int main()
 
             // checks if code is accepted then proceeds ask user which language user wants to compile code in
             // checks whether all variables were declared
-            if(compiler.check(statement) && parser.isDeclared())
-            {
+            if(compiler.check(statement) && parser.isDeclared()){
 
                 int choice; // user choice one what to comple
                 bool quit = false; // quits when user picks choice
@@ -115,13 +115,9 @@ int main()
             }
         }
     }else{
-        cout << "Could not open finalv1.txt" << endl;
+        cout << "Could not open" << string(argv[1]) << endl;
     }
-
-
-
-
+    cout << "Done." << endl;
     data.close(); // close the file
-    system("pause");
     return 0;
 }

@@ -4,7 +4,7 @@
 This grammar can include mathematical operands, named variables and print statements.
 Uses a predictive parsing table to check if the grammar is valid.
 Converts the grammar into valid python/c++ code.
-<b>NOTE: </b>A real compiler will convert to machine code instead we simulate the process with high level code)</p>
+<b>NOTE: </b>A real compiler will convert grammar to machine code instead we simulate the process with high level code)</p>
 
 <h3> Original Grammar RailRoad</h3>
 
