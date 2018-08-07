@@ -1,7 +1,6 @@
 Author: Andrew Le
 =======
 Email:andrewle19@gmail.com
-=======
 
 Compiler project that takes in an original grammar parses and converts the grammar into Backus–Naur form(BNF).
 This grammar can include mathematical operands, named variables and print statements.
