@@ -1,6 +1,9 @@
-<h2>Author: Andrew Le</h2>
-<h2>Email:andrewle19@gmail.com</h2>
-<p>Compiler project that takes in an original grammar parses and converts the grammar into Backus–Naur form(BNF).
+Author: Andrew Le
+=======
+Email:andrewle19@gmail.com
+=======
+
+Compiler project that takes in an original grammar parses and converts the grammar into Backus–Naur form(BNF).
 This grammar can include mathematical operands, named variables and print statements.
 Uses a predictive parsing table to check if the grammar is valid.
 Converts the grammar into valid python/c++ code.
